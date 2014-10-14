@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block head_title %}{{ 'Blog' }}{% endblock %}
+{% block ci1 %} class="current_page_item" {% endblock %}
+{% block content %}
+
+    <!-- Posts -->
+    {% for post in posts %}
+        <article class="is-post is-post-excerpt" xmlns="http://www.w3.org/1999/html">
+            <header>
+                <h1 class="outer"><a href="{% url 'blog:view_blog_post' post.slug %}">{{ post.title }}</a></h1>
+            </header>
+
+            <div class="info">
+                <span class="date"><span class="day">{{ post.posted|date:"j" }}. </span><span
+                        class="month">{{ post.posted |date:"F"|slice:":3" }}<span>{{ post.posted|date:"F"|slice:"3:" }}</span></span> <span
+                        class="year">{{ post.posted|date:"Y" }}</span></span>
+                <ul class="stats">
+                    <li><a href="#" class="fa fa-comment"><a href="{% url 'blog:view_blog_post' post.slug  %}#disqus_thread">0</a></a></li>
+                </ul>
+            </div>
+           <p>
+                {{ post.body_marked|truncatewords_html:60|safe }}  
+               <a href="{% url 'blog:view_blog_post' post.slug %}">[Click for next reading]</a>
+            </p>
+                <hr>
+                Kategorie: <a href="{% url 'blog:view_blog_category' post.category.slug %}">{{ post.category.title }}</a>
+        </article>
+    {% endfor %}
+
+    <!-- Pager -->
+    {% if prev != 'no_prev' %}
+        <a class="button next" href="/blog/{{ prev }}">Newer</a>
+    {% endif %}
+
+    {% if check_length == 0 %}
+        <a class="button next" href="/blog/{{ next }}">Older</a>
+    {% endif %}
+    </div>
+{% endblock %}
+

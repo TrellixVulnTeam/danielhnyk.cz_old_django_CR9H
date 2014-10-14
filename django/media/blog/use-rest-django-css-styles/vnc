@@ -1,0 +1,10 @@
+Spuštění VNC na KMLinuxu:
+
+Na hostovi:
+vncserver -depth 24 -geometry 1280x750 -localhost 
+
+Na klientovi:
+-Nainstalovat tigervnc
+-ssh -f -C -N -L 5902:127.0.0.1:5902 hnykdan1@kmlinux.fjfi.cvut.cz
+-vncviewer localhost:2
+-kralik123

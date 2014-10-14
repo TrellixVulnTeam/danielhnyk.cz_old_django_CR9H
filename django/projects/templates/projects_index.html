@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block head_title %}{{ 'Projects' }}{% endblock %}
+{% block ci2 %} class="current_page_item" {% endblock %}
+{% block content %}
+
+    {% for pclass in pclasses %}
+        <h1 class="outer">{{ pclass }}</h1>
+        <img src={{pclass.pclass_pic|thumbnail_url:"small" }} />
+        <ul>
+        {% for project in projects %}
+            {% if project.pclass == pclass %}
+            <li>
+                <h2><a href="{% url 'projects:view_project' project.slug %}">{{ project.title }}</a></h2>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <hr>
+    {% endfor %}
+
+{% endblock %}
+

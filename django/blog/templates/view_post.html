@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block ci1 %} class="current_page_item" {% endblock %}
+{% block head_title %}{{ post.title }}{% endblock %}
+
+{% block disqus_count %}
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'dnhnk'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+{% endblock  %}
+{% block content %}
+
+<article class="is-post is-post-excerpt">
+    <header>
+
+        <h1 class="outer"><a href="{{ cur_url }}">{{ post.title }}</a></h1>
+        </header>
+
+    <div class="info">
+        <span class="date"><span class="day">{{ post.posted|date:"j" }}. </span><span class="month">{{ post.posted |date:"F"|slice:":3" }}<span>{{ post.posted|date:"F"|slice:"3:" }}</span></span> <span class="year">{{ post.posted|date:"Y" }}</span></span>
+
+        <ul class="stats">
+            <li><a href="#" class="fa fa-comment"><a href="{{ cur_url }}#disqus_thread">0</a></a></li>
+        </ul>
+    </div>
+    <p>
+    {{ post.body_marked|safe }}
+    </p>
+    <br />
+    {% if post.files %}
+    <h2><a href="{{ post.files.url}}">Download files</a></h2>
+    {% endif %}
+        <hr>
+    <table>
+    <tr>
+        <th><p align="left">Category: <a href="{% url 'blog:view_blog_category' post.category.slug %}">{{ post.category.title }}</a></p></th>
+        <th><p align="right">Last <a class="nostyling" href="{% url 'admin:blog_blog_change' post.id %}">modified</a>: {{ post.last_mod }}</p></th>
+    </tr>
+    </table>
+
+<!-- START DISQUS -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'dnhnk'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<!-- END DISQUS -->
+    </div>
+
+</article>
+
+
+{% endblock %}
