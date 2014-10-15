@@ -1,59 +1,53 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import easy_thumbnails.fields
+import markupfield.fields
+import blog.models
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Blog'
-        db.create_table('blog_blog', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=100)),
-            ('body', self.gf('django.db.models.fields.TextField')()),
-            ('posted', self.gf('django.db.models.fields.DateField')(db_index=True, auto_now_add=True, blank=True)),
-            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['blog.Category'])),
-            ('pic', self.gf('django.db.models.fields.files.ImageField')(null=True, max_length=100, blank=True)),
-        ))
-        db.send_create_signal('blog', ['Blog'])
+    dependencies = [
+    ]
 
-        # Adding model 'Category'
-        db.create_table('blog_category', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(db_index=True, max_length=100)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=100)),
-        ))
-        db.send_create_signal('blog', ['Category'])
-
-
-    def backwards(self, orm):
-        # Deleting model 'Blog'
-        db.delete_table('blog_blog')
-
-        # Deleting model 'Category'
-        db.delete_table('blog_category')
-
-
-    models = {
-        'blog.blog': {
-            'Meta': {'object_name': 'Blog'},
-            'body': ('django.db.models.fields.TextField', [], {}),
-            'category': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['blog.Category']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'pic': ('django.db.models.fields.files.ImageField', [], {'null': 'True', 'max_length': '100', 'blank': 'True'}),
-            'posted': ('django.db.models.fields.DateField', [], {'db_index': 'True', 'auto_now_add': 'True', 'blank': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'}),
-            'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'})
-        },
-        'blog.category': {
-            'Meta': {'object_name': 'Category'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '100'}),
-            'title': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '100'})
-        }
-    }
-
-    complete_apps = ['blog']
+    operations = [
+        migrations.CreateModel(
+            name='Blog',
+            fields=[
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('title', models.CharField(max_length=100, unique=True)),
+                ('slug', models.SlugField(max_length=100, unique=True)),
+                ('posted', models.DateField(db_index=True, auto_now_add=True)),
+                ('last_mod', models.DateField(auto_now=True)),
+                ('body_marked', markupfield.fields.MarkupField()),
+                ('body_marked_markup_type', models.CharField(editable=False, choices=[('', '--'), ('ReST', 'ReST')], max_length=30, default='ReST')),
+                ('publish', models.BooleanField(default=False, verbose_name='Should I publish it?')),
+                ('_body_marked_rendered', models.TextField(editable=False)),
+                ('files', models.FileField(upload_to=blog.models.get_name_file, blank=True)),
+                ('title_pic', easy_thumbnails.fields.ThumbnailerImageField(upload_to=blog.models.get_name_file, default='/media/pictures/blog/template.jpg', verbose_name='Titulní foto')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Category',
+            fields=[
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('title', models.CharField(db_index=True, max_length=100)),
+                ('slug', models.SlugField(max_length=100)),
+                ('categ_pic', easy_thumbnails.fields.ThumbnailerImageField(upload_to=blog.models.get_name_file, default='/media/pictures/blog/template.jpg', verbose_name='Foto kategorie')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='blog',
+            name='category',
+            field=models.ForeignKey(to='blog.Category'),
+            preserve_default=True,
+        ),
+    ]
