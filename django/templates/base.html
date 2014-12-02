@@ -1,4 +1,5 @@
 {% load i18n staticfiles %}
+{% load categ_tags %}
 <!DOCTYPE HTML>
 <!--
     Striped 2.5 by HTML5 Up!
@@ -110,6 +111,9 @@
                 </header>
                 <ul>
                     {% for category in ALL_CATEGS %}
+                        <!-- Tohle byl fail pokus - ale naucil jsem se, jak delat custom tagy -->
+                        <!-- momentalne vraci vsechny blogy z dane categorie - ovsem jako objekty a tedy se renderuji jako stringy... -->
+                        <!--  <li><a href="{% get_pub category.title  %}">{{ category.title }}</a></li> -->
                         <li><a href="{% url 'blog:view_blog_category' category.slug %}">{{ category.title }}</a></li>
                     {% endfor %}
                 </ul>

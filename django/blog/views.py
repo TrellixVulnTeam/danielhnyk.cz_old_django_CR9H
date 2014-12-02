@@ -39,7 +39,7 @@ def view_category(request, slug):
     category = get_object_or_404(Category, slug=slug)
     context = {
          'category': category,
-         'posts': Blog.objects.filter(category=category)[:5]
+         'posts': Blog.objects.filter(publish=True, category=category)[:5]
      }
     return render(request, 'blog_index.html', context)
 
