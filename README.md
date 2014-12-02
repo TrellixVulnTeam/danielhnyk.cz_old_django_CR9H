@@ -1,4 +1,4 @@
 www.danielhnyk.cz
 ==================
 
-Here is nothing than my website
+Here is nothing more than my website
