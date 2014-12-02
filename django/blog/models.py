@@ -24,6 +24,7 @@ class Blog(models.Model):
         default="/media/pictures/blog/template.jpg",
         verbose_name="Titulní foto")
 
+
 class Category(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, db_index=True)
@@ -31,7 +32,6 @@ class Category(models.Model):
         upload_to=get_name_file,
         default="/media/pictures/blog/template.jpg",
         verbose_name="Foto kategorie")
-
 
     def __str__(self):
         return self.title

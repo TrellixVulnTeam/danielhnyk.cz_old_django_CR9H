@@ -47,6 +47,7 @@ INSTALLED_APPS = (
 #    'django_summernote',
     'easy_thumbnails',
     'projects',
+    'blog.templatetags',
 )
 
 
