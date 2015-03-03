@@ -9,7 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^blog/', include('blog.urls', namespace="blog")),
     url(r'^projects/', include('projects.urls', namespace="projects")),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^sefik/', include(admin.site.urls)),
 #    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^media/(?P<path>.*)$',
         'django.views.static.serve',
