@@ -23,7 +23,7 @@ SOUTH_MIGRATION_MODULES = {
 SECRET_KEY = '@p6bxp=a6u-$)v@oj7krs059u27p#9h%&^bhy-s(_f6dljjaq_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
