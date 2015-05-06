@@ -28,6 +28,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['www.danielhnyk.cz', 'danielhnyk.cz']
+INTERNAL_IPS = ["192.168.0.222"]
 
 
 # Application definition
@@ -48,6 +49,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'projects',
     'blog.templatetags',
+    'debug_toolbar',
 )
 
 
