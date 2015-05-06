@@ -16,6 +16,7 @@ class Project(models.Model):
     body_marked = MarkupField(markup_type="ReST")
     end = models.DateField(db_index=True, auto_now_add=True)
     pclass = models.ForeignKey('projects.PClass')
+    publish = models.BooleanField(default=False, verbose_name="Should I publish it?")
     title_pic = ThumbnailerImageField(
         upload_to=get_name_file,
         null=True, blank=True,

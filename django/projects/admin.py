@@ -5,7 +5,7 @@ from projects.models import Project, PClass
 class ProjectAdmin(admin.ModelAdmin):
     exclude = ['start', 'last_mod']
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ('title', 'start')
+    list_display = ('title', 'publish', 'start')
 
 class PClassAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
