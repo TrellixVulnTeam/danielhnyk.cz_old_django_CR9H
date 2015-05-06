@@ -5,7 +5,7 @@ from projects.models import Project, PClass
 
 def index(request, offset):
     # Mozna by chtelo zvlast passed a active
-    projects = Project.objects.all()
+    projects = Project.objects.filter(publish=True)
     pclasses = PClass.objects.all()
 
     context = {
