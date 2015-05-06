@@ -12,6 +12,7 @@
 #
 
 from __future__ import print_function
+import getopt, os, sys
 
 VERSION = "pilprint 0.3/2003-05-05"
 
@@ -21,14 +22,11 @@ from PIL import PSDraw
 letter = ( 1.0*72, 1.0*72, 7.5*72, 10.0*72 )
 
 def description(file, image):
-    import os
     title = os.path.splitext(os.path.split(file)[1])[0]
     format = " (%dx%d "
     if image.format:
         format = " (" + image.format + " %dx%d "
     return title + format % image.size + image.mode + ")"
-
-import getopt, os, sys
 
 if len(sys.argv) == 1:
     print("PIL Print 0.2a1/96-10-04 -- print image files")
