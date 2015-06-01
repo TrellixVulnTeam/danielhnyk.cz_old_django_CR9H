@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'projects',
     'blog.templatetags',
     'debug_toolbar',
+    'django_pygments',
 )
 
 
