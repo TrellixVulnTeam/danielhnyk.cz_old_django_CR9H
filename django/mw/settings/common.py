@@ -56,7 +56,6 @@ USE_TZ = True
 #Media files
 MEDIA_ROOT = (os.path.join(BASE_DIR, "media"))
 MEDIA_URL = '/media/'
-
 THUMBNAIL_ALIASES = {
     '': {
         'small': {'size': (100, 100)},
@@ -73,3 +72,13 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "sfiles"), )
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+
+from docutils.core import publish_parts
+
+def render_rest(markup):
+    parts = publish_parts(source=markup, writer_name="html4css1")
+    return parts["fragment"]
+
+MARKUP_FIELD_TYPES = (
+    ('ReST', render_rest),
+)

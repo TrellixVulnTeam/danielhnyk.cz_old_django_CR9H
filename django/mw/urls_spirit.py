@@ -7,17 +7,10 @@ from django.contrib.flatpages import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^blog/', include('blog.urls', namespace="blog")),
-    url(r'^projects/', include('projects.urls', namespace="projects")),
     url(r'^sefik/', include(admin.site.urls)),
 #    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^media/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT}),
-    url(r'^spirit/', include('spirit.urls')),
+    url(r'^', include('spirit.urls')),
 )
-
-urlpatterns += [
-    url(r'^about/$', views.flatpage, {'url': '/about/'}, name='about'),
-    url(r'^/$', views.flatpage, {'url': '/'}, name='home'),
-    ]

@@ -44,9 +44,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
-ROOT_URLCONF = 'mw.urls'
 
-WSGI_APPLICATION = 'mw.wsgi.application'
+WSGI_APPLICATION = 'mw.wsgi_blog.application'
 
 # Templates
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)

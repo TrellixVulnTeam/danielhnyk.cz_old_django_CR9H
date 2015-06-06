@@ -25,6 +25,7 @@ INSTALLED_APPS = (
 )
 
 
+ROOT_URLCONF = 'mw.urls_blog'
 TEMPLATE_CONTEXT_PROCESSORS = (
   'django.contrib.auth.context_processors.auth',
   'django.core.context_processors.i18n',
@@ -44,9 +45,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
-ROOT_URLCONF = 'mw.urls'
 
-WSGI_APPLICATION = 'mw.wsgi.application'
+WSGI_APPLICATION = 'mw.wsgi_blog.application'
 
 # Templates
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
@@ -55,15 +55,6 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
-from docutils.core import publish_parts
-
-def render_rest(markup):
-    parts = publish_parts(source=markup, writer_name="html4css1")
-    return parts["fragment"]
-
-MARKUP_FIELD_TYPES = (
-    ('ReST', render_rest),
-)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 SITE_ID = 3 #www.danielhnyk.cz
