@@ -1,13 +1,13 @@
 #!/bin/bash
  
-NAME="danielhnyk.cz"                                  # Name of the application
+NAME="spirit.danielhnyk.cz"                                  # Name of the application
 DJANGODIR=/var/www/danielhnyk/production/django/             # Django project directory
-SOCKFILE_BLOG=/var/www/danielhnyk/run/blog.sock  # we will communicte using this unix socket
+SOCKFILE_SPIRIT=/var/www/danielhnyk/run/spirit.sock  # we will communicte using this unix socket
 USER=nginx                                        # the user to run as
 GROUP=webdata                                     # the group to run as
 NUM_WORKERS=1                                     # how many worker processes should Gunicorn spawn
-SETTINGS_BLOG=mw.settings.blog             # which settings file should Django use
-WSGI_BLOG=mw.wsgi_blog                     # WSGI module name
+SETTINGS_SPIRIT=mw.settings.spirit             # which settings file should Django use
+WSGI_SPIRIT=mw.wsgi_spirit                     # WSGI module name
 TIMEOUT=300
  
 echo "Starting $NAME as `whoami`"
@@ -16,19 +16,16 @@ echo "Starting $NAME as `whoami`"
 cd $DJANGODIR
 source /var/www/danielhnyk/production/venv/bin/activate
 
-
-### BLOG ###
-export DJANGO_SETTINGS_MODULE=$SETTINGS_BLOG
+### SPIRIT ###
+export DJANGO_SETTINGS_MODULE=$SETTINGS_SPIRIT
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
  
 # Start your Django Unicorn
 # Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
-exec /var/www/danielhnyk/production/venv/bin/gunicorn ${WSGI_BLOG}:application \
+exec /var/www/danielhnyk/production/venv/bin/gunicorn ${WSGI_SPIRIT}:application \
   --name $NAME \
   --workers $NUM_WORKERS \
   --log-level=warning \
   --user $USER \
-  --bind=unix:$SOCKFILE_BLOG \
+  --bind=unix:$SOCKFILE_SPIRIT \
   --timeout $TIMEOUT
-
-
