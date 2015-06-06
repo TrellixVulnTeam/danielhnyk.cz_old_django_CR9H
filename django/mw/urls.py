@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT}),
+    url(r'^spirit/', include('spirit.urls')),
 )
 
 urlpatterns += [
