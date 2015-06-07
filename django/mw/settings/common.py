@@ -19,7 +19,7 @@ BASE_DIR = os.path.abspath(os.path.join(project_name_dir, ".."))
 SECRET_KEY = open("/var/www/danielhnyk/secret_key.txt").read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-from debug import *
+from .debug import *
 #DEBUG = True
 #TEMPLATE_DEBUG = True
 
