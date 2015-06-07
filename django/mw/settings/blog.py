@@ -47,10 +47,6 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'context_processors.extra_context',
             ],
-            'template_loaders':[
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ]
         },
     },
 ]

@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 project_name_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.abspath(os.path.join(project_name_dir, ".."))
-#BASE_DIR = "/var/www/danielhnyk/work_dir/django"  #os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -20,20 +19,12 @@ SECRET_KEY = open("/var/www/danielhnyk/secret_key.txt").read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 from .debug import *
-#DEBUG = True
-#TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['www.danielhnyk.cz', 'danielhnyk.cz', 'spirit.danielhnyk.cz']
 INTERNAL_IPS = ["192.168.0.222"]
 
-
-# Application definition
-
-
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -69,14 +60,13 @@ THUMBNAIL_ALIASES = {
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "sfiles"), )
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
+# Markdown fields
 from docutils.core import publish_parts
-
 def render_rest(markup):
     parts = publish_parts(source=markup, writer_name="html4css1")
     return parts["fragment"]
