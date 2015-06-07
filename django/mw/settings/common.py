@@ -21,7 +21,7 @@ SECRET_KEY = open("/var/www/danielhnyk/secret_key.txt").read().strip()
 from .debug import *
 
 ALLOWED_HOSTS = ['www.danielhnyk.cz', 'danielhnyk.cz', 'spirit.danielhnyk.cz']
-INTERNAL_IPS = ["192.168.0.222"]
+INTERNAL_IPS = ["192.168.0.222", "localhost", "127.0.0.1"]
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
