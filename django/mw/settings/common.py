@@ -10,18 +10,20 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = "/var/www/danielhnyk/work_dir/django"  #os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+project_name_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.abspath(os.path.join(project_name_dir, ".."))
+#BASE_DIR = "/var/www/danielhnyk/work_dir/django"  #os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@p6bxp=a6u-$)v@oj7krs059u27p#9h%&^bhy-s(_f6dljjaq_'
+SECRET_KEY = open("/var/www/danielhnyk/secret_key.txt").read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+from debug import *
+#DEBUG = True
+#TEMPLATE_DEBUG = True
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = ['www.danielhnyk.cz', 'danielhnyk.cz']
+ALLOWED_HOSTS = ['www.danielhnyk.cz', 'danielhnyk.cz', 'spirit.danielhnyk.cz']
 INTERNAL_IPS = ["192.168.0.222"]
 
 
