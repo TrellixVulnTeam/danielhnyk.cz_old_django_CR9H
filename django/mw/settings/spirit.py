@@ -14,6 +14,6 @@ DEFAULT_FROM_EMAIL = "kotrfa@gmail.com"
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+        'PATH': os.path.join(os.path.dirname(BASE_DIR), 'others/whoosh_index'),
     },
 }
