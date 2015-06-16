@@ -20,7 +20,7 @@ SECRET_KEY = open("/var/www/danielhnyk/secret_key.txt").read().strip()
 # SECURITY WARNING: don't run with debug turned on in production!
 from .debug import *
 
-ALLOWED_HOSTS = ['www.danielhnyk.cz', 'danielhnyk.cz', 'spirit.danielhnyk.cz']
+ALLOWED_HOSTS = ['www.danielhnyk.cz', 'danielhnyk.cz']
 INTERNAL_IPS = ["192.168.0.222", "localhost", "127.0.0.1"]
 
 # Database
