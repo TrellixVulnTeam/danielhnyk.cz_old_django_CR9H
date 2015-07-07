@@ -15,6 +15,7 @@ INSTALLED_APPS = (
     'blog.templatetags',
     'debug_toolbar',
     'django_pygments',
+    'aladin',
 )
 
 
