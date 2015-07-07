@@ -3,5 +3,5 @@ from aladin import views
 
 urlpatterns = patterns('',
     url(r'^$', views.get_urlofpic, name='get_urlofpic'),
-    url(r'^result$', views.result, name='result'),
+    url(r'^result$', views.get_urlofpic, name='result'),
 )

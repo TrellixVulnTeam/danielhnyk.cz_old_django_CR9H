@@ -1,11 +1,22 @@
-<html>
-<head>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block head_title %}{{ 'Aladin' }}{% endblock %}
+{% block content %}
+<h1>Data z CHMI</h1>
+<p>Momentálně je možné získat pouze data o teplotě.</p>
+
+<p>Pro získání dat v požadovaném formátu máte na výběr ze dvou možností. </p>
+
+<p>Buď do pole pro URL vložte URL adresu obrázku z meteogramu <a href="http://www.chmi.cz/files/portal/docs/meteo/ov/aladin/results/public/meteogramy/meteogram_page_portal/m.html">zde</a> (kliknout pravým tlačítkem na obrázek a zkopírovat odkaz) </p>
 <form action="/aladin/" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+Zadejte URL adresu obrázku z meteogramu:    {{ form.urlOfPic }}
+<p>Druhou variantou je vybrat si z možností níže.  {{ form.kod  }}</p>
+
+Zvolte formát:    {{ form.out_format  }}
+Čas:    {{ form.cas  }}
+Varianta (má se použít URL a nebo výběr z nabídky?):    {{ form.varianta  }}
+<input type="submit" value="Submit" />
 </form>
-</body>
-</html>
+<br />
+<br>
+{% endblock %}
